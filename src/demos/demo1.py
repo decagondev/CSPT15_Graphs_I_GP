@@ -18,4 +18,22 @@ class GraphNode:
 
 def color_graph(graph, colors):
     # Your code here
-    pass
+
+    # iterate over each node of the graph
+    for node in graph:
+        # handle if an infinite loop is occuring
+        if node in node.neighbors:
+            raise Exception("impossible to find a legal solution")
+
+
+
+        # get the node's neighbors colors
+        # check if a color is illegal?
+        illegal_colors = set([neighbor.color for neighbor in node.neighbors if neighbor.color])
+
+
+        # assign the first legal color
+        for color in colors:
+            if color not in illegal_colors:
+                node.color = color
+                break
